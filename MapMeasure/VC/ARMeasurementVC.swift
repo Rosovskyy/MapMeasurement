@@ -34,7 +34,6 @@ class ARMeasurementVC: UIViewController {
     
     // MARK: - Fileprivate
     fileprivate func sceneViewConfiguration() {
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
         self.sceneView.showsStatistics = true
         self.sceneView.session.run(self.configuration)
         self.sceneView.delegate = self

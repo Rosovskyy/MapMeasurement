@@ -14,7 +14,6 @@ extension ARMeasurementVC: ARSCNViewDelegate {
     
     // MARK: - ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        print(self.canSet)
         if !self.canSet {
             return
         }
