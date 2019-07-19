@@ -20,6 +20,8 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mapView.layer.borderColor = UIColor.black.cgColor
+        mapView.layer.borderWidth = 3
         mapView.coordinates = self.coordinates
     }
 }

@@ -21,19 +21,17 @@ class MapView: UIView {
     }
     
     func drawLine(user context: CGContext) {
-        print(self.coordinates!)
         let aPath = UIBezierPath()
-        for stroke in 0..<self.coordinates!.count - 1 {
-            aPath.move(to: self.coordinates![stroke])
+        aPath.move(to: self.coordinates![0])
+        for stroke in 1..<self.coordinates!.count - 1 {
             aPath.addLine(to: self.coordinates![stroke + 1])
+            aPath.lineCapStyle = .round
         }
         
         aPath.close()
-        
+
         UIColor.red.set()
-        
         aPath.stroke()
-        aPath.fill()
     }
 
 }

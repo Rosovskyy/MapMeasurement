@@ -33,8 +33,8 @@ extension ARMeasurementVC {
     
     func addCoordinate(x: CGFloat, y: CGFloat) {
         DispatchQueue.main.async {
-            let x = self.view.frame.width / 2 + round(x * 600)
-            let y = self.view.frame.height / 2 + round(y * 600)
+            let x = self.view.frame.width / 2 + round(x * 200)
+            let y = self.view.frame.height / 2 + round(y * 200)
             if self.coordinates != nil {
                 self.coordinates?.append(CGPoint(x: x, y: y))
             } else {

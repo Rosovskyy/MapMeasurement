@@ -35,35 +35,26 @@
                                     <action selector="startTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1cw-Wq-aFe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWe-bC-ZcF">
-                                <rect key="frame" x="305" y="597" width="50" height="50"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="7Ms-In-KNW"/>
-                                    <constraint firstAttribute="width" constant="50" id="qwq-iX-LLd"/>
-                                </constraints>
-                                <state key="normal" title="Map">
-                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Y70-xP-mPj" kind="show" id="bj4-zu-yGo"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="LtP-4S-33w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="09g-fH-gTX"/>
                             <constraint firstItem="VKo-S4-Zul" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FF5-kC-eXF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bWe-bC-ZcF" secondAttribute="bottom" constant="20" id="Mwo-Ya-N8i"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LtP-4S-33w" secondAttribute="bottom" id="Y9s-PD-opt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LtP-4S-33w" secondAttribute="trailing" id="bSd-3P-qwg"/>
                             <constraint firstItem="LtP-4S-33w" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="iVa-jJ-feD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bWe-bC-ZcF" secondAttribute="trailing" constant="20" id="ssT-iv-Q24"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VKo-S4-Zul" secondAttribute="bottom" constant="20" id="zIX-5Q-K3f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="World" id="4HN-Rb-2zW"/>
+                    <navigationItem key="navigationItem" title="World" id="4HN-Rb-2zW">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="zDw-aF-7NI">
+                            <color key="tintColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="Y70-xP-mPj" kind="show" id="0mc-HO-1yc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="sceneView" destination="LtP-4S-33w" id="MWD-nX-LGV"/>
                         <outlet property="startButton" destination="VKo-S4-Zul" id="XKX-Fe-7gA"/>
@@ -109,9 +100,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ClQ-OJ-m6y" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="COw-dj-ymx">
+                    <navigationBar key="navigationBar" alpha="0.5" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="COw-dj-ymx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
