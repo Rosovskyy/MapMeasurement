@@ -14,6 +14,7 @@ class ARMeasurementVC: UIViewController {
     
     // MARK: - Properties
     let configuration = ARWorldTrackingConfiguration()
+    var coordinates: [CGPoint]?
     var startingPosition: SCNNode?
     var distance: Float = 0
     var timer = Each(1).seconds
@@ -47,6 +48,14 @@ class ARMeasurementVC: UIViewController {
             self.setButton(button: self.startButton, text: "Stop")
         } else {
             self.setButton(button: self.startButton, text: "Start")
+        }
+    }
+    
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is MapViewController {
+            let vc = segue.destination as? MapViewController
+            vc?.coordinates = coordinates
         }
     }
 }
