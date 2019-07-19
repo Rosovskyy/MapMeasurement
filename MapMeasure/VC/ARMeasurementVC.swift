@@ -44,9 +44,9 @@ class ARMeasurementVC: UIViewController {
         if self.startButton.titleLabel?.text == "Start" {
             self.addNode()
             self.setTimer()
-            self.startButton.setTitle("Stop", for: .normal)
+            self.setButton(button: self.startButton, text: "Start")
         } else {
-            self.startButton.setTitle("Start", for: .normal)
+            self.setButton(button: self.startButton, text: "Start")
         }
     }
 }

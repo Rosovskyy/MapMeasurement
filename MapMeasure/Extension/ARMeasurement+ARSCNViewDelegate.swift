@@ -8,6 +8,7 @@
 
 import Foundation
 import ARKit
+import Network
 
 extension ARMeasurementVC: ARSCNViewDelegate {
     
@@ -18,6 +19,7 @@ extension ARMeasurementVC: ARSCNViewDelegate {
                 return
             }
         }
+        self.checkInternetConnection()
         guard let startingPosition = self.startingPosition else { return }
         guard let pointOfView = self.sceneView.pointOfView else { return }
         

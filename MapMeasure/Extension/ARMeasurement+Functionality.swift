@@ -9,6 +9,7 @@
 import Foundation
 import ARKit
 import Each
+import Network
 
 extension ARMeasurementVC {
     
@@ -40,12 +41,51 @@ extension ARMeasurementVC {
         }
     }
     
+    func showAlertMessage() {
+        DispatchQueue.main.async {
+            let alertPresented = self.presentedViewController
+            if !(alertPresented != nil && (alertPresented is UIAlertController)) {
+                let alert = UIAlertController(title: "Error", message: "No internet connection", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    switch action.style{
+                    case .default:
+                        print("default")
+                        
+                    case .cancel:
+                        print("cancel")
+                        
+                    case .destructive:
+                        print("destructive")
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func checkInternetConnection() {
+        let monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            if path.status != .satisfied {
+                self.setButton(button: self.startButton, text: "Start")
+                self.showAlertMessage()
+            }
+        }
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+    }
+    
     func restoreTimer() {
         self.countDown += 2
     }
     
     func distanceToOrigin(_ x: Float, _ y: Float, _ z: Float) -> Float {
         return (pow(x, 2) + pow(y, 2) + pow(z, 2)).squareRoot()
+    }
+    
+    func setButton(button: UIButton, text: String) {
+        DispatchQueue.main.async {
+            button.setTitle(text, for: .normal)
+        }
     }
 }
 
