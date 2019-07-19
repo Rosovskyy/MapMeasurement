@@ -85,6 +85,11 @@ extension ARMeasurementVC {
     func setButton(button: UIButton, text: String) {
         DispatchQueue.main.async {
             button.setTitle(text, for: .normal)
+            if button.titleLabel?.text == "Start" {
+                self.canSet = true
+            } else {
+                self.canSet = false
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ class ARMeasurementVC: UIViewController {
     var distance: Float = 0
     var timer = Each(1).seconds
     var countDown = 2
+    var canSet: Bool = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var sceneView: ARSCNView!
@@ -41,10 +42,10 @@ class ARMeasurementVC: UIViewController {
     
     // MARK: - Actions
     @IBAction func startTapped(_ sender: Any) {
-        if self.startButton.titleLabel?.text == "Start" {
+        if !self.canSet {
             self.addNode()
             self.setTimer()
-            self.setButton(button: self.startButton, text: "Start")
+            self.setButton(button: self.startButton, text: "Stop")
         } else {
             self.setButton(button: self.startButton, text: "Start")
         }

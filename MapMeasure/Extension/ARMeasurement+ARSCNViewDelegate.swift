@@ -14,10 +14,9 @@ extension ARMeasurementVC: ARSCNViewDelegate {
     
     // MARK: - ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        DispatchQueue.main.async {
-            if self.startButton.titleLabel?.text == "Start" {
-                return
-            }
+        print(self.canSet)
+        if !self.canSet {
+            return
         }
         self.checkInternetConnection()
         guard let startingPosition = self.startingPosition else { return }
