@@ -21,7 +21,8 @@ extension ARMeasurementVC {
 
         let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.05))
         sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        sphereNode.simdTransform = transform
+        let position = transform.columns.3
+        sphereNode.position = SCNVector3(position.x, 0, position.z)
 
         self.sceneView.scene.rootNode.addChildNode(sphereNode)
 
