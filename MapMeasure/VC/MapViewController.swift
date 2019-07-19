@@ -22,6 +22,4 @@ class MapViewController: UIViewController {
 
         mapView.coordinates = self.coordinates
     }
-    
-    // MARK: - Functionality
 }
