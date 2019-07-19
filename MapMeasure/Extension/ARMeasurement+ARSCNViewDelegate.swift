@@ -18,7 +18,7 @@ extension ARMeasurementVC: ARSCNViewDelegate {
                 return
             }
         }
-        guard let startingPosition = self.startingPosition?.last else { return }
+        guard let startingPosition = self.startingPosition else { return }
         guard let pointOfView = self.sceneView.pointOfView else { return }
         
         let transform = pointOfView.transform

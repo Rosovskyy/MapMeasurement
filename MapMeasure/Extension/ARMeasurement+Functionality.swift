@@ -24,11 +24,7 @@ extension ARMeasurementVC {
         
         self.sceneView.scene.rootNode.addChildNode(sphereNode)
         
-        if self.startingPosition != nil {
-            self.startingPosition?.append(sphereNode)
-        } else {
-            self.startingPosition = [sphereNode]
-        }
+        self.startingPosition = sphereNode
     }
     
     func setTimer() {

@@ -14,7 +14,7 @@ class ARMeasurementVC: UIViewController {
     
     // MARK: - Properties
     let configuration = ARWorldTrackingConfiguration()
-    var startingPosition: [SCNNode]?
+    var startingPosition: SCNNode?
     var distance: Float = 0
     var timer = Each(1).seconds
     var countDown = 2
