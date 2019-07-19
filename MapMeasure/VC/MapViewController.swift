@@ -11,7 +11,7 @@ import UIKit
 class MapViewController: UIViewController {
     
     // MARK: - Properties
-    var coordinates: [CGPoint]?
+    var coordinates: [(CGFloat, CGFloat)]?
     
     // MARK: - IBOutlets
     @IBOutlet weak var mapView: MapView!

@@ -73,16 +73,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sT8-Ue-t3w" customClass="MapView" customModule="MapMeasure" customModuleProvider="target">
-                                <rect key="frame" x="15" y="79" width="345" height="573"/>
+                                <rect key="frame" x="17.5" y="163.5" width="340" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="340" id="Fw3-py-iFi"/>
+                                    <constraint firstAttribute="height" constant="340" id="mAZ-fG-fAa"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sT8-Ue-t3w" firstAttribute="top" secondItem="aNJ-th-xvh" secondAttribute="top" constant="15" id="AEC-pu-foa"/>
-                            <constraint firstItem="aNJ-th-xvh" firstAttribute="bottom" secondItem="sT8-Ue-t3w" secondAttribute="bottom" constant="15" id="NJd-Q1-d2j"/>
-                            <constraint firstItem="sT8-Ue-t3w" firstAttribute="leading" secondItem="aNJ-th-xvh" secondAttribute="leading" constant="15" id="iXB-rz-rnH"/>
-                            <constraint firstItem="aNJ-th-xvh" firstAttribute="trailing" secondItem="sT8-Ue-t3w" secondAttribute="trailing" constant="15" id="n00-o5-R9T"/>
+                            <constraint firstItem="sT8-Ue-t3w" firstAttribute="centerY" secondItem="Lfh-Tz-SWB" secondAttribute="centerY" id="HAd-Mk-mTe"/>
+                            <constraint firstItem="sT8-Ue-t3w" firstAttribute="centerX" secondItem="Lfh-Tz-SWB" secondAttribute="centerX" id="h1O-qi-UYO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aNJ-th-xvh"/>
                     </view>
