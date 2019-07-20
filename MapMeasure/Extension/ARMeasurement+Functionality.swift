@@ -23,8 +23,8 @@ extension ARMeasurementVC {
         sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         let position = transform.columns.3
         sphereNode.position = SCNVector3(position.x, 0, position.z)
-        
-        self.addCoordinate(x: CGFloat(position.x), y: CGFloat(position.y))
+
+        self.addCoordinate(x: CGFloat(position.x), y: CGFloat(position.z))
 
         self.sceneView.scene.rootNode.addChildNode(sphereNode)
 
