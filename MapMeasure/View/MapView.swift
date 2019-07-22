@@ -12,21 +12,25 @@ class MapView: UIView {
     
     // MARK: - Properties
     var coordinates: [(CGFloat, CGFloat)]?
-
+    var scaler: CGFloat = 1
+    
     override func draw(_ rect: CGRect) {
+        
+        if self.coordinates == nil {
+            return
+        }
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
 
+        self.findOptimalScaler()
         self.drawLine(user: context)
     }
     
     func drawLine(user context: CGContext) {
-        let horizontalCenter = self.layer.frame.width / 2
-        let verticalCenter = self.layer.frame.height / 2
         let aPath = UIBezierPath()
         for stroke in 0..<self.coordinates!.count - 1 {
-            aPath.move(to: CGPoint(x: round(horizontalCenter + self.coordinates![stroke].0 * 50), y: round(verticalCenter + self.coordinates![stroke].1 * 50)))
-            let nextPoint = CGPoint(x: round(horizontalCenter + self.coordinates![stroke+1].0 * 50), y: round(verticalCenter + self.coordinates![stroke+1].1 * 50))
+            aPath.move(to: CGPoint(x: round(self.coordinates![stroke].0 * self.scaler), y: round(self.coordinates![stroke].1 * self.scaler)))
+            let nextPoint = CGPoint(x: round(self.coordinates![stroke+1].0 * self.scaler), y: round(self.coordinates![stroke+1].1 * self.scaler))
             aPath.addLine(to: nextPoint)
             aPath.lineCapStyle = .round
         }
@@ -35,6 +39,34 @@ class MapView: UIView {
         
         UIColor.red.set()
         aPath.stroke()
+    }
+    
+    func findOptimalScaler() {
+        let viewWidth = self.layer.frame.width
+        let viewHeight = self.layer.frame.height
+        for coord in 0..<self.coordinates!.count {
+            let newX = round(viewWidth/2 + self.coordinates![coord].0 * 200)
+            let newY = round(viewHeight/2 + self.coordinates![coord].1 * 200)
+            let checkIfOut = self.checkIfOutOfBorder(x: newX, y: newY)
+            if checkIfOut == "x" {
+                self.scaler = self.scaler < viewWidth / newX ? self.scaler : viewWidth / newY
+            }
+            if checkIfOut == "y" {
+                self.scaler = self.scaler < viewHeight / newY ? self.scaler : viewHeight / newY
+            }
+            self.coordinates![coord] = (newX, newY)
+        }
+    }
+    
+    func checkIfOutOfBorder(x: CGFloat, y: CGFloat) -> String? {
+        let viewWidth = Int(self.layer.frame.width)
+        let viewHeight = Int(self.layer.frame.height)
+        if Int(x) > viewWidth - 5 || Int(x) < -viewWidth/2 + 5 {
+            return "x"
+        } else if  Int(y) > viewHeight - 5 || Int(y) < -viewHeight/2 + 5 {
+            return "y"
+        }
+        return nil
     }
 
 }
