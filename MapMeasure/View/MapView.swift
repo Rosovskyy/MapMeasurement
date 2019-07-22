@@ -28,7 +28,7 @@ class MapView: UIView {
     
     func drawLine(user context: CGContext) {
         let aPath = UIBezierPath()
-        print(self.scaler)
+        self.scaler -= 0.05
         for stroke in 0..<self.coordinates!.count - 1 {
             let moveTo = stroke == 0 ? CGPoint(x: self.layer.frame.width/2, y: self.layer.frame.height/2) : CGPoint(x: round(self.coordinates![stroke].0 * self.scaler), y: round(self.coordinates![stroke].1 * self.scaler))
             aPath.move(to: moveTo)
@@ -47,7 +47,6 @@ class MapView: UIView {
     func findOptimalScaler() {
         let viewWidth = self.layer.frame.width
         let viewHeight = self.layer.frame.height
-        print(self.coordinates!)
         for coord in 0..<self.coordinates!.count {
             let newX = round(viewWidth/2 + self.coordinates![coord].0 * 200)
             let newY = round(viewHeight/2 + self.coordinates![coord].1 * 200)
@@ -60,7 +59,6 @@ class MapView: UIView {
             }
             self.coordinates![coord] = (newX, newY)
         }
-        print(self.coordinates!)
     }
     
     func checkIfOutOfBorder(x: CGFloat, y: CGFloat) -> String? {
