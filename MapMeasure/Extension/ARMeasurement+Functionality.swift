@@ -20,9 +20,12 @@ extension ARMeasurementVC {
         let transform = camera.transform
 
         let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.05))
-        sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         let position = transform.columns.3
         sphereNode.position = SCNVector3(position.x, 0, position.z)
+        
+        self.testSpeed { (speed) in
+            sphereNode.geometry?.firstMaterial?.diffuse.contents = speed < 3 ? UIColor(red: speed * 255 / 3, green: 255, blue: 0, alpha: 1) : UIColor(red: 255, green: 255 - speed * 255 / 3, blue: 0, alpha: 1)
+        }
 
         self.addCoordinate(x: CGFloat(position.x), y: CGFloat(position.z))
 
@@ -60,6 +63,7 @@ extension ARMeasurementVC {
         }
     }
     
+    // MARK: - Network
     func checkInternetConnection() {
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = { path in
@@ -70,6 +74,22 @@ extension ARMeasurementVC {
         }
         let queue = DispatchQueue(label: "Monitor")
         monitor.start(queue: queue)
+    }
+    
+    func testSpeed(completion: @escaping (CGFloat) -> Void) {
+        let url = URL(string: bigImage)
+        let request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let startTime = Date()
+        session.dataTask(with: request) { (data, resp, error) in
+            guard error == nil && data != nil else { return }
+            guard resp != nil else { return }
+
+            let length  = CGFloat( (resp?.expectedContentLength)!) / 1000000.0
+            
+            let downloadingTime = CGFloat( Date().timeIntervalSince(startTime))
+            completion(length / downloadingTime)
+        }.resume()
     }
     
     func distanceToOrigin(_ x: Float, _ y: Float, _ z: Float) -> Float {
@@ -93,7 +113,7 @@ extension ARMeasurementVC {
             self.countDown -= 1
             if self.countDown == 0 {
                 self.sceneView.scene.rootNode.enumerateChildNodes { (childNode, _) in
-                    childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.random
+//                    childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.random
                 }
                 self.restoreTimer()
             }
